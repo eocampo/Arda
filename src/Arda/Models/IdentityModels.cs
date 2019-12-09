@@ -6,7 +6,12 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Arda.Models
 {
-    public class ApplicationUser : IdentityUser
+    public class ApplicationRole : IdentityRole<int>
+    {
+
+    }
+
+    public class ApplicationUser : IdentityUser<int>
     {
 
     }

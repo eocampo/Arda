@@ -9,10 +9,20 @@ using Arda.Models;
 
 namespace Arda.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser> // DbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, int> // DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) :base(options) {
 
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder) {
+            base.OnModelCreating(builder);
+
+            //builder.Entity<ApplicationUser>()
+            //    .ToTable("AspNetUsers")
+            //    .Property(b => b.PhoneNumber)
+            //    .HasMaxLength(256);
+            
         }
     }
 }

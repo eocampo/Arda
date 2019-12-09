@@ -21,12 +21,17 @@ namespace Arda
         public Startup(IConfiguration configuration) {
             this.Configuration = configuration;
         }
-        
+
         public void ConfigureServices(IServiceCollection services) {
-            services.AddDbContext<ApplicationDbContext>(options => 
+            services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentity<ApplicationUser, ApplicationRole>(options => {
+            }).AddEntityFrameworkStores<ApplicationDbContext>();
+
+            //services.AddIdentity<ApplicationUser, ApplicationRole>(options => {
+            //    // ...
+            //}).AddEntityFrameworkStores<ApplicationDbContext, int>(); // NOTE this line
+
             //services.AddTransient<ICharacterRepository, EFCharacterRepository>();
             services.AddMvc();
         }
